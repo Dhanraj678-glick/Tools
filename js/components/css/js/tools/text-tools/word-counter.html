@@ -1,0 +1,76 @@
+// tools/text-tools/word-counter.js
+document.addEventListener('DOMContentLoaded', () => {
+    const textInput = document.getElementById('text-input');
+    const clearButton = document.getElementById('clear-button');
+    const copyStatsButton = document.getElementById('copy-stats-button');
+
+    const wordCountEl = document.getElementById('word-count');
+    const charCountSpacesEl = document.getElementById('char-count-spaces');
+    const charCountNoSpacesEl = document.getElementById('char-count-no-spaces');
+    const sentenceCountEl = document.getElementById('sentence-count');
+    const paragraphCountEl = document.getElementById('paragraph-count');
+
+    function updateCounts() {
+        const text = textInput.value;
+
+        // Word count
+        const words = text.trim() === '' ? [] : text.trim().split(/\s+/).filter(word => word.length > 0);
+        wordCountEl.textContent = words.length;
+
+        // Character count (with spaces)
+        charCountSpacesEl.textContent = text.length;
+
+        // Character count (without spaces)
+        charCountNoSpacesEl.textContent = text.replace(/\s/g, '').length;
+
+        // Sentence count (basic: split by '.', '!', '?')
+        const sentences = text.trim() === '' ? [] : text.match(/[^.!?]+[.!?]+[\])'"`’”]*\s*|(^$)/g);
+        sentenceCountEl.textContent = sentences ? sentences.length : 0;
+
+        // Paragraph count (basic: split by one or more newlines, filter empty)
+        const paragraphs = text.trim() === '' ? [] : text.split(/\n\s*\n/).filter(p => p.trim().length > 0);
+        paragraphCountEl.textContent = paragraphs.length;
+    }
+
+    if (textInput) {
+        textInput.addEventListener('input', updateCounts);
+        updateCounts(); // Initial count if there's pre-filled text (e.g. from browser cache)
+    }
+
+    if (clearButton) {
+        clearButton.addEventListener('click', () => {
+            textInput.value = '';
+            updateCounts();
+            textInput.focus();
+        });
+    }
+
+    if (copyStatsButton) {
+        copyStatsButton.addEventListener('click', () => {
+            const statsText = `Word Count Statistics:
+- Words: ${wordCountEl.textContent}
+- Characters (with spaces): ${charCountSpacesEl.textContent}
+- Characters (no spaces): ${charCountNoSpacesEl.textContent}
+- Sentences: ${sentenceCountEl.textContent}
+- Paragraphs: ${paragraphCountEl.textContent}`;
+
+            navigator.clipboard.writeText(statsText)
+                .then(() => {
+                    // Optional: Show a temporary success message
+                    const originalText = copyStatsButton.textContent;
+                    copyStatsButton.textContent = 'Copied!';
+                    copyStatsButton.classList.add('btn-success');
+                    copyStatsButton.classList.remove('btn-outline-info');
+                    setTimeout(() => {
+                        copyStatsButton.textContent = originalText;
+                        copyStatsButton.classList.remove('btn-success');
+                        copyStatsButton.classList.add('btn-outline-info');
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy stats: ', err);
+                    alert('Failed to copy stats. Your browser might not support this feature or permission was denied.');
+                });
+        });
+    }
+});
