@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Tools Website - Your Ultimate Online Toolkit</title>
+    <meta name="description" content="A collection of 100+ free online tools including image converters, calculators, SEO utilities, text tools, developer tools, and much more.">
+    <meta name="keywords" content="online tools, free tools, image converter, calculator, seo tools, text utilities, developer tools">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Preload tools data -->
+    <script src="js/tools-data.js"></script>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="container mt-4 mb-5">
+        <div class="p-5 mb-4 bg-light rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">Welcome to Multi-Tools!</h1>
+                <p class="col-md-8 fs-4">Your one-stop shop for a vast collection of free online utilities. Find image converters, calculators, SEO tools, text processors, developer helpers, and much more.</p>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="row mb-4">
+            <div class="col-md-8 offset-md-2">
+                <div class="input-group input-group-lg">
+                    <input type="search" id="search-bar" class="form-control" placeholder="Search for a tool (e.g., 'png converter', 'word count')..." aria-label="Search for a tool">
+                    <button class="btn btn-primary" type="button" id="search-button-trigger">Search</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Ad Slot (Example) -->
+        <div class="row mb-4">
+            <div class="col">
+                <div class="ad-placeholder-tool-page" style="min-height: 100px;">
+                    Prominent Ad Slot on Homepage
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Tools Grid -->
+        <div id="tools-grid-container">
+            <!-- Tools will be dynamically inserted here by JavaScript -->
+            <div class="text-center p-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading tools...</span>
+                </div>
+                <p class="mt-2">Loading tools...</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Bootstrap JS Bundle (Popper.js included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Global Custom Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>
